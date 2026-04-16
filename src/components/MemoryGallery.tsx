@@ -1,10 +1,16 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Image } from "lucide-react";
+import memory1 from "@/assets/memory-1.jpg";
+import memory2 from "@/assets/memory-2.jpg";
+import memory3 from "@/assets/memory-3.jpg";
+import memory4 from "@/assets/memory-4.jpg";
 
-const placeholders = Array.from({ length: 6 }, (_, i) => ({
-  id: i + 1,
-  aspect: i % 3 === 0 ? "aspect-square" : i % 3 === 1 ? "aspect-[3/4]" : "aspect-[4/3]",
-}));
+const photos = [
+  { id: 1, src: memory1, aspect: "aspect-[3/4]", alt: "Benjamin at the football field" },
+  { id: 2, src: memory2, aspect: "aspect-[3/4]", alt: "Benjamin with a friend" },
+  { id: 3, src: memory3, aspect: "aspect-square", alt: "Benjamin photo collage" },
+  { id: 4, src: memory4, aspect: "aspect-[3/4]", alt: "Benjamin in denim jacket" },
+];
 
 const MemoryGallery = () => {
   const { t } = useLanguage();
@@ -18,19 +24,19 @@ const MemoryGallery = () => {
         </h2>
 
         <div className="columns-2 md:columns-3 gap-4 max-w-4xl mx-auto">
-          {placeholders.map((p) => (
+          {photos.map((p) => (
             <div
               key={p.id}
-              className={`mb-4 break-inside-avoid rounded-xl overflow-hidden glass group hover:neon-border transition-all duration-500 ${p.aspect}`}
+              className={`mb-4 break-inside-avoid rounded-xl overflow-hidden glass group hover:neon-border transition-all duration-500`}
             >
-              <div className="w-full h-full flex items-center justify-center bg-muted/20 relative">
-                <div className="absolute inset-0 animate-neon-pulse opacity-30 rounded-xl" />
-                <div className="text-center relative z-10">
-                  <Image className="w-8 h-8 text-primary/40 mx-auto mb-2" />
-                  <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-wider">
-                    Memory #{p.id}
-                  </p>
-                </div>
+              <div className="relative overflow-hidden">
+                <div className="absolute inset-0 animate-neon-pulse opacity-20 rounded-xl z-10 pointer-events-none" />
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
               </div>
             </div>
           ))}
