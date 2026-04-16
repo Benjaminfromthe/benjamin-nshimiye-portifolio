@@ -1,51 +1,61 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Menu, X } from "lucide-react";
+import { useState } from "react";
+import profileImg from "@/assets/benjamin-profile.png";
 
 interface NavBarProps {
   theme: "cyber" | "shinkai";
   onToggleTheme: () => void;
+  onAboutClick: () => void;
 }
 
-const NavBar = ({ theme, onToggleTheme }: NavBarProps) => {
-  const { lang, setLang, t } = useLanguage();
+const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
+  const { t } = useLanguage();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileOpen(false);
   };
+
+  const navItems = [
+    { key: "home", action: () => scrollTo("hero") },
+    { key: "about", action: () => { onAboutClick(); setMobileOpen(false); } },
+    { key: "projects", action: () => scrollTo("projects") },
+    { key: "credentials", action: () => scrollTo("archive") },
+    { key: "contact", action: () => scrollTo("contact") },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 glass-strong">
       <div className="container mx-auto flex items-center justify-between h-14 px-4">
-        <span className="font-heading text-sm neon-text tracking-widest cursor-pointer" onClick={() => scrollTo("hero")}>
-          BEN.SYS
-        </span>
-
-        <div className="hidden md:flex items-center gap-6">
-          {["home", "archive", "projects", "skills"].map((s) => (
-            <button
-              key={s}
-              onClick={() => scrollTo(s === "home" ? "hero" : s)}
-              className="font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
-            >
-              {t(`nav_${s}`)}
-            </button>
-          ))}
+        {/* Profile picture */}
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full overflow-hidden border border-primary/50 animate-neon-pulse">
+            <img src={profileImg} alt="Benjamin Nshimiye" className="w-full h-full object-cover" />
+          </div>
+          <span className="font-heading text-sm neon-text tracking-widest hidden sm:inline cursor-pointer" onClick={() => scrollTo("hero")}>
+            BEN.SYS
+          </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex gap-1">
-            {(["en", "rw", "fr"] as const).map((l) => (
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-1">
+          <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
+            {navItems.map((item) => (
               <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={`px-2 py-1 rounded text-xs font-mono uppercase transition-all ${
-                  lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
+                key={item.key}
+                onClick={item.action}
+                className="font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all px-3 py-1.5 rounded-full"
               >
-                {l}
+                {t(`nav_${item.key}`)}
               </button>
             ))}
           </div>
+        </div>
+
+        {/* Right side */}
+        <div className="flex items-center gap-2">
           <button
             onClick={onToggleTheme}
             className="p-2 rounded-lg glass hover:neon-border transition-all"
@@ -53,8 +63,33 @@ const NavBar = ({ theme, onToggleTheme }: NavBarProps) => {
           >
             {theme === "cyber" ? <Sun className="w-4 h-4 text-foreground" /> : <Moon className="w-4 h-4 text-foreground" />}
           </button>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden p-2 rounded-lg glass hover:neon-border transition-all"
+          >
+            {mobileOpen ? <X className="w-4 h-4 text-foreground" /> : <Menu className="w-4 h-4 text-foreground" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden glass-strong border-t border-border animate-fade-in">
+          <div className="container mx-auto px-4 py-3 flex flex-col gap-2">
+            {navItems.map((item) => (
+              <button
+                key={item.key}
+                onClick={item.action}
+                className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors text-left py-2"
+              >
+                {t(`nav_${item.key}`)}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
