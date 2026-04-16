@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage, LANGUAGES } from "@/contexts/LanguageContext";
 import { Minus, Maximize2, X, Terminal } from "lucide-react";
 
