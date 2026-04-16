@@ -2,28 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const BENJAMIN_INFO = `You are Ben-AI, a friendly AI assistant for Benjamin Nshimiye's portfolio website.
-
-About Benjamin:
-- Full name: Benjamin Nshimiye
-- Age: 22 years old
-- From: Nyarugenge, Rwanda
-- Family: 5th of 6 siblings
-- Height: 1.68m, Weight: 57kg
-- Status: Single
-- Hobbies: Football, puzzles, and laughter
-- Profession: Full-Stack Engineer & Digital Architect
-
-Projects:
-- Vuu: A smart transport management platform for urban mobility with real-time tracking, route optimization, and digital ticketing. Built with React, Node.js, PostgreSQL, Socket.IO.
-- GlobalBride: An international trade platform connecting African manufacturers with global markets. Built with Python, Django, React, AWS.
-
-Skills: Python (90%), SQL (85%), React (80%), Cisco Networking (75%), TypeScript (78%), Node.js (82%)
-
-Credentials: Has a CV and S6 Diploma/S3 Slip available for download.
-
-Respond in the user's language. Be friendly, helpful, and knowledgeable about Benjamin.`;
-
 interface Message {
   role: "user" | "assistant";
   content: string;
@@ -45,18 +23,17 @@ const BenAI = () => {
 
   const getResponse = (userMsg: string): string => {
     const lower = userMsg.toLowerCase();
-    
-    // Simple keyword-based responses in user's language
+
     const responses: Record<string, Record<string, string>> = {
       greeting: {
-        en: "Hey there! 👋 I'm Ben-AI, Benjamin's digital assistant. Ask me anything about his projects, skills, or background!",
-        fr: "Salut ! 👋 Je suis Ben-AI, l'assistant numérique de Benjamin. Posez-moi des questions sur ses projets, compétences ou parcours !",
+        en: "Hey there! 👋 I'm Ben-AI, Benjamin's digital assistant. Ask me anything about his projects, skills, socials, or background!",
+        fr: "Salut ! 👋 Je suis Ben-AI, l'assistant numérique de Benjamin. Posez-moi des questions sur ses projets, compétences, réseaux sociaux ou parcours !",
         rw: "Muraho ! 👋 Ndi Ben-AI, umufasha wa Benjamin. Mbaza ikibazo icyo ari cyo cyose !",
         sw: "Habari! 👋 Mimi ni Ben-AI, msaidizi wa Benjamin. Niulize chochote!",
       },
       projects: {
-        en: "Benjamin has built two major projects:\n\n🚗 **Vuu** - A smart transport platform with real-time tracking and digital ticketing (React, Node.js, PostgreSQL).\n\n🌍 **GlobalBride** - An international trade platform connecting African manufacturers to global markets (Python, Django, React, AWS).",
-        fr: "Benjamin a créé deux projets majeurs :\n\n🚗 **Vuu** - Plateforme de transport intelligent.\n\n🌍 **GlobalBride** - Plateforme de commerce international reliant les fabricants africains aux marchés mondiaux.",
+        en: "Benjamin has built two major projects:\n\n🚗 **Vuu** - A smart transport platform connecting Rwandan motorcyclists with passengers. Features real-time tracking and digital ticketing (React, Node.js, PostgreSQL).\n\n🌍 **GlobalBride** - An international trade & tourism ecosystem built for the Hult Prize, connecting African manufacturers to global markets (Python, Django, React, AWS).",
+        fr: "Benjamin a créé deux projets majeurs :\n\n🚗 **Vuu** - Plateforme de transport intelligent connectant les motocyclistes rwandais.\n\n🌍 **GlobalBride** - Écosystème de commerce international pour le Hult Prize.",
         rw: "Benjamin yakoze imishinga ibiri mikuru:\n\n🚗 **Vuu** - Sisitemu yo gutwara abantu.\n\n🌍 **GlobalBride** - Urubuga rw'ubucuruzi mpuzamahanga.",
       },
       skills: {
@@ -65,28 +42,38 @@ const BenAI = () => {
         rw: "Ubumenyi bwa Benjamin: Python (90%), SQL (85%), Node.js (82%), React (80%), TypeScript (78%), Cisco (75%). Ni umuhanga nyawe! 💪",
       },
       about: {
-        en: "Benjamin Nshimiye is a 22-year-old Full-Stack Engineer from Nyarugenge, Rwanda. He's the 5th of 6 kids. He loves football ⚽, puzzles 🧩, and making people laugh 😂. Currently single and focused on building amazing tech!",
+        en: "Benjamin Nshimiye is a 22-year-old Full-Stack Engineer from Nyarugenge, Rwanda. He's the 5th of 6 kids. He loves football ⚽, puzzles 🧩, and making people laugh 😂. Currently single (1.68m, 57kg) and focused on building amazing tech!",
         fr: "Benjamin Nshimiye, 22 ans, ingénieur Full-Stack de Nyarugenge, Rwanda. 5ème de 6 enfants. Il aime le football ⚽, les puzzles 🧩 et faire rire les gens 😂.",
         rw: "Benjamin Nshimiye afite imyaka 22, ni Umuhanga mu Ikoranabuhanga ukomoka Nyarugenge. Ni uwa 5 muri 6. Akunda umupira ⚽, ibisakuzo 🧩 n'inseko 😂.",
       },
+      socials: {
+        en: "You can connect with Benjamin on:\n\n💼 LinkedIn: linkedin.com/in/benjamin-nshimiye-b403983a5\n🐙 GitHub: github.com/Benjaminfromthe\n🐦 X/Twitter: x.com/BNshimiye61872\n📧 Email: benjaminnshimiye633@gmail.com\n\nAll links are in the navigation bar and footer!",
+        fr: "Retrouvez Benjamin sur :\n\n💼 LinkedIn\n🐙 GitHub\n🐦 X/Twitter\n📧 Email: benjaminnshimiye633@gmail.com\n\nTous les liens sont dans la barre de navigation et le pied de page !",
+        rw: "Shakira Benjamin kuri:\n\n💼 LinkedIn\n🐙 GitHub\n🐦 X/Twitter\n📧 Email: benjaminnshimiye633@gmail.com",
+      },
+      memories: {
+        en: "The System Memories gallery showcases Benjamin's journey — key moments, achievements, and snapshots from his life and career. Check out the gallery section on the page! 📸",
+        fr: "La galerie Mémoires Système présente le parcours de Benjamin — moments clés, réalisations et instantanés de sa vie. Découvrez la section galerie ! 📸",
+        rw: "Amafoto y'Ububiko bwerekana urugendo rwa Benjamin — ibihe by'ingenzi n'ibyo yagezeho. Reba igice cy'amafoto! 📸",
+      },
       contact: {
-        en: "You can download Benjamin's CV and diploma from the Credentials section on this page. For direct contact, scroll down to the Contact section!",
-        fr: "Vous pouvez télécharger le CV et le diplôme de Benjamin dans la section Diplômes. Pour le contacter, scrollez jusqu'à la section Contact !",
-        rw: "Ushobora gukuramo CV na Diploma ya Benjamin mu gice cy'impamyabumenyi. Kugira ngo umuhanure, manuka ujye mu gice cyo guhamagara!",
+        en: "You can download Benjamin's CV and diploma from the Credentials section. For direct contact, scroll to the Contact section or email benjaminnshimiye633@gmail.com!",
+        fr: "Vous pouvez télécharger le CV et le diplôme dans la section Diplômes. Pour le contacter: benjaminnshimiye633@gmail.com !",
+        rw: "Ushobora gukuramo CV na Diploma mu gice cy'impamyabumenyi. Email: benjaminnshimiye633@gmail.com!",
       },
       default: {
-        en: "That's a great question! I know everything about Benjamin — his projects (Vuu & GlobalBride), skills (Python, React, etc.), and personal life. What would you like to know? 🤖",
-        fr: "Bonne question ! Je connais tout sur Benjamin — ses projets, compétences et vie personnelle. Que voulez-vous savoir ? 🤖",
+        en: "That's a great question! I know everything about Benjamin — projects (Vuu & GlobalBride), skills, socials, memories, and personal life. What would you like to know? 🤖",
+        fr: "Bonne question ! Je connais tout sur Benjamin. Que voulez-vous savoir ? 🤖",
         rw: "Ni ikibazo cyiza! Nzi byose kuri Benjamin. Ushaka kumenya iki? 🤖",
       },
     };
 
     const langKey = lang in (responses.greeting || {}) ? lang : "en";
-    
+
     if (/^(hi|hello|hey|bonjour|salut|muraho|habari|hola|oi|hallo)/i.test(lower)) {
       return responses.greeting[langKey] || responses.greeting.en;
     }
-    if (/project|vuu|globalbride|imishinga|projet|miradi/i.test(lower)) {
+    if (/project|vuu|globalbride|imishinga|projet|miradi|hult/i.test(lower)) {
       return responses.projects[langKey] || responses.projects.en;
     }
     if (/skill|ubumenyi|compétence|python|react|node/i.test(lower)) {
@@ -95,7 +82,13 @@ const BenAI = () => {
     if (/about|who|benjamin|age|family|hobby|ibyanjye|propos|kuhusu/i.test(lower)) {
       return responses.about[langKey] || responses.about.en;
     }
-    if (/contact|cv|diploma|download|resume|twandikire/i.test(lower)) {
+    if (/social|linkedin|github|twitter|x\.com|connect|follow/i.test(lower)) {
+      return responses.socials[langKey] || responses.socials.en;
+    }
+    if (/memor|gallery|photo|picture|amafoto/i.test(lower)) {
+      return responses.memories[langKey] || responses.memories.en;
+    }
+    if (/contact|cv|diploma|download|resume|twandikire|email/i.test(lower)) {
       return responses.contact[langKey] || responses.contact.en;
     }
     return responses.default[langKey] || responses.default.en;
@@ -108,7 +101,6 @@ const BenAI = () => {
     setMessages((prev) => [...prev, { role: "user", content: userMsg }]);
     setLoading(true);
 
-    // Simulate typing delay
     setTimeout(() => {
       const response = getResponse(userMsg);
       setMessages((prev) => [...prev, { role: "assistant", content: response }]);
@@ -118,20 +110,17 @@ const BenAI = () => {
 
   return (
     <>
-      {/* Chat bubble */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg animate-neon-pulse hover:scale-110 transition-transform"
+          className="ben-ai-bubble fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg animate-neon-pulse hover:scale-110 transition-transform"
         >
           <MessageCircle className="w-6 h-6" />
         </button>
       )}
 
-      {/* Chat panel */}
       {open && (
         <div className="fixed bottom-6 right-6 z-50 w-80 md:w-96 glass-strong rounded-2xl overflow-hidden animate-scale-in flex flex-col" style={{ height: "28rem" }}>
-          {/* Header */}
           <div className="px-4 py-3 border-b border-border flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
@@ -142,7 +131,6 @@ const BenAI = () => {
             </button>
           </div>
 
-          {/* Messages */}
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-3">
             {messages.length === 0 && (
               <div className="text-center py-8">
@@ -155,9 +143,7 @@ const BenAI = () => {
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[80%] rounded-xl px-3 py-2 text-xs font-mono whitespace-pre-wrap ${
-                  msg.role === "user"
-                    ? "bg-primary/20 text-foreground"
-                    : "glass text-foreground"
+                  msg.role === "user" ? "bg-primary/20 text-foreground" : "glass text-foreground"
                 }`}>
                   {msg.content}
                 </div>
@@ -172,7 +158,6 @@ const BenAI = () => {
             )}
           </div>
 
-          {/* Input */}
           <div className="px-3 py-2 border-t border-border flex gap-2">
             <input
               value={input}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import SocialLinks from "@/components/SocialLinks";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -9,7 +10,6 @@ const Footer = () => {
     const stored = parseInt(localStorage.getItem("syncCount") || "0");
     const next = stored + 1;
     localStorage.setItem("syncCount", String(next));
-    // Animate counter
     let current = 0;
     const interval = setInterval(() => {
       current += Math.ceil(next / 30);
@@ -29,6 +29,9 @@ const Footer = () => {
         <div className="glass rounded-xl inline-flex items-center gap-4 px-8 py-4 mb-6">
           <span className="font-mono text-xs text-muted-foreground uppercase">{t("totalSyncs")}</span>
           <span className="font-heading text-2xl neon-text">{count.toLocaleString()}</span>
+        </div>
+        <div className="flex justify-center mb-4">
+          <SocialLinks />
         </div>
         <p className="font-mono text-xs text-muted-foreground">
           © {new Date().getFullYear()} Benjamin Nshimiye • Built with 💜

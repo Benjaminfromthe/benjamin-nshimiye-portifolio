@@ -23,8 +23,8 @@ const SplashScreen = ({ onComplete }: SplashScreenProps) => {
     setSelectedLang(code);
     setPhase("welcome");
 
-    // Auto-transition after 3 seconds
-    setTimeout(onComplete, 3000);
+    // Auto-transition after 2 seconds
+    setTimeout(onComplete, 2000);
   }, [setLang, onComplete]);
 
   const welcomeText = selectedLang
