@@ -1,5 +1,5 @@
-import { useLanguage } from "@/contexts/LanguageContext";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { useLanguage, LANGUAGES, Lang } from "@/contexts/LanguageContext";
+import { Sun, Moon, Menu, X, Globe } from "lucide-react";
 import { useState } from "react";
 import profileImg from "@/assets/benjamin-profile.png";
 import SocialLinks from "@/components/SocialLinks";
@@ -11,8 +11,9 @@ interface NavBarProps {
 }
 
 const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
-  const { t } = useLanguage();
+  const { t, lang, setLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [langOpen, setLangOpen] = useState(false);
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -55,6 +56,32 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
 
         <div className="flex items-center gap-2">
           <SocialLinks className="hidden lg:flex" />
+          {/* Language switcher */}
+          <div className="relative">
+            <button
+              onClick={() => setLangOpen(!langOpen)}
+              className="p-2 rounded-lg glass hover:neon-border transition-all flex items-center gap-1"
+              aria-label="Switch language"
+            >
+              <Globe className="w-4 h-4 text-foreground" />
+              <span className="font-mono text-[10px] uppercase text-muted-foreground hidden sm:inline">{lang}</span>
+            </button>
+            {langOpen && (
+              <div className="absolute right-0 top-full mt-2 w-44 glass-strong rounded-xl p-2 max-h-60 overflow-y-auto animate-fade-in z-50">
+                {LANGUAGES.map((l) => (
+                  <button
+                    key={l.code}
+                    onClick={() => { setLang(l.code as Lang); setLangOpen(false); }}
+                    className={`w-full text-left px-3 py-1.5 rounded-lg font-mono text-xs transition-colors ${
+                      lang === l.code ? "bg-primary/20 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
+                  >
+                    {l.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
           <button
             onClick={onToggleTheme}
             className="p-2 rounded-lg glass hover:neon-border transition-all"

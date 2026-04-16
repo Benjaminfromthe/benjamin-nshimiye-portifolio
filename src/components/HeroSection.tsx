@@ -6,7 +6,6 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="min-h-[70vh] flex items-center justify-center pt-14 relative overflow-hidden">
-      {/* Background grid */}
       <div className="absolute inset-0 opacity-5" style={{
         backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
           linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
@@ -14,7 +13,6 @@ const HeroSection = () => {
       }} />
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
-        {/* Holographic portrait frame */}
         <div className="relative mb-8">
           <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden relative animate-neon-pulse border-2 border-primary">
             <div className="absolute inset-0 z-10 overflow-hidden rounded-full pointer-events-none">
@@ -31,8 +29,11 @@ const HeroSection = () => {
         <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl neon-text tracking-widest mb-3">
           {t("hero_title")}
         </h1>
-        <p className="font-heading text-sm md:text-base text-secondary tracking-wider">
+        <p className="font-heading text-sm md:text-base text-secondary tracking-wider mb-4">
           {t("hero_subtitle")}
+        </p>
+        <p className="font-body text-sm text-muted-foreground max-w-lg leading-relaxed">
+          {t("hero_narrative")}
         </p>
       </div>
     </section>
