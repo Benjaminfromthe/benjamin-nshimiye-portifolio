@@ -1,16 +1,56 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useCallback } from "react";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import SplashScreen from "@/components/SplashScreen";
+import NavBar from "@/components/NavBar";
+import HeroSection from "@/components/HeroSection";
+import CredentialsSection from "@/components/CredentialsSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
+import SystemLog from "@/components/SystemLog";
+import Footer from "@/components/Footer";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [showSplash, setShowSplash] = useState(true);
+  const [theme, setTheme] = useState<"cyber" | "shinkai">("cyber");
+  const [entered, setEntered] = useState(false);
+
+  const handleSplashComplete = useCallback(() => {
+    setShowSplash(false);
+    setTimeout(() => setEntered(true), 50);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((t) => {
+      const next = t === "cyber" ? "shinkai" : "cyber";
+      if (next === "shinkai") {
+        document.documentElement.classList.add("shinkai");
+      } else {
+        document.documentElement.classList.remove("shinkai");
+      }
+      return next;
+    });
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <LanguageProvider>
+      {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+
+      <div
+        className={`transition-all duration-700 ${
+          entered ? "opacity-100 scale-100" : "opacity-0 scale-105"
+        }`}
+        style={{ filter: entered ? "blur(0)" : "blur(10px)" }}
+      >
+        <NavBar theme={theme} onToggleTheme={toggleTheme} />
+        <HeroSection />
+        <CredentialsSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <Footer />
+        <SystemLog />
+      </div>
+    </LanguageProvider>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
