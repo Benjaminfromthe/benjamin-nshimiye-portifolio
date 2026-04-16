@@ -7,9 +7,11 @@ import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import CredentialsSection from "@/components/CredentialsSection";
 import ContactSection from "@/components/ContactSection";
+import MemoryGallery from "@/components/MemoryGallery";
 import AboutModal from "@/components/AboutModal";
 import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
+import SystemTour from "@/components/SystemTour";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -17,10 +19,15 @@ const Index = () => {
   const [theme, setTheme] = useState<"cyber" | "shinkai">("cyber");
   const [entered, setEntered] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [showTour, setShowTour] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
-    setTimeout(() => setEntered(true), 50);
+    setTimeout(() => {
+      setEntered(true);
+      // Trigger tour after entry animation
+      setTimeout(() => setShowTour(true), 800);
+    }, 50);
   }, []);
 
   const toggleTheme = () => {
@@ -49,6 +56,7 @@ const Index = () => {
         <HeroSection />
         <ProjectsSection />
         <SkillsSection />
+        <MemoryGallery />
         <CredentialsSection />
         <ContactSection />
         <Footer />
@@ -57,6 +65,7 @@ const Index = () => {
       </div>
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
+      {showTour && <SystemTour onClose={() => setShowTour(false)} />}
     </LanguageProvider>
   );
 };

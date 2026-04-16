@@ -2,6 +2,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { useState } from "react";
 import profileImg from "@/assets/benjamin-profile.png";
+import SocialLinks from "@/components/SocialLinks";
 
 interface NavBarProps {
   theme: "cyber" | "shinkai";
@@ -29,7 +30,6 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 glass-strong">
       <div className="container mx-auto flex items-center justify-between h-14 px-4">
-        {/* Profile picture */}
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-full overflow-hidden border border-primary/50 animate-neon-pulse">
             <img src={profileImg} alt="Benjamin Nshimiye" className="w-full h-full object-cover" />
@@ -39,7 +39,6 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
           </span>
         </div>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1">
           <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
             {navItems.map((item) => (
@@ -54,8 +53,8 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
           </div>
         </div>
 
-        {/* Right side */}
         <div className="flex items-center gap-2">
+          <SocialLinks className="hidden lg:flex" />
           <button
             onClick={onToggleTheme}
             className="p-2 rounded-lg glass hover:neon-border transition-all"
@@ -63,8 +62,6 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
           >
             {theme === "cyber" ? <Sun className="w-4 h-4 text-foreground" /> : <Moon className="w-4 h-4 text-foreground" />}
           </button>
-
-          {/* Mobile menu button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="md:hidden p-2 rounded-lg glass hover:neon-border transition-all"
@@ -74,7 +71,6 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden glass-strong border-t border-border animate-fade-in">
           <div className="container mx-auto px-4 py-3 flex flex-col gap-2">
@@ -87,6 +83,9 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
                 {t(`nav_${item.key}`)}
               </button>
             ))}
+            <div className="pt-2 border-t border-border">
+              <SocialLinks />
+            </div>
           </div>
         </div>
       )}
