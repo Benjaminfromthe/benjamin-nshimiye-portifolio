@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import CredentialsSection from "@/components/CredentialsSection";
+import AchievementVault from "@/components/AchievementVault";
 import ContactSection from "@/components/ContactSection";
 import MemoryGallery from "@/components/MemoryGallery";
 import AboutModal from "@/components/AboutModal";
@@ -25,7 +26,6 @@ const Index = () => {
     setShowSplash(false);
     setTimeout(() => {
       setEntered(true);
-      // Trigger tour after entry animation
       setTimeout(() => setShowTour(true), 800);
     }, 50);
   }, []);
@@ -58,6 +58,7 @@ const Index = () => {
         <SkillsSection />
         <MemoryGallery />
         <CredentialsSection />
+        <AchievementVault />
         <ContactSection />
         <Footer />
         <SystemLog />

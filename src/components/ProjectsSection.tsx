@@ -1,5 +1,5 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Cpu, Globe } from "lucide-react";
+import { Cpu, Globe, ExternalLink } from "lucide-react";
 
 const projects = [
   {
@@ -9,6 +9,7 @@ const projects = [
     desc: "A smart transport management platform connecting Rwandan motorcyclists with passengers. Features real-time vehicle tracking, route optimization, digital ticketing, and seamless ride-hailing for urban mobility.",
     tech: ["React", "Node.js", "PostgreSQL", "Socket.IO"],
     color: "primary",
+    url: "https://vuu-transport-8d7a3630.base44.app/",
   },
   {
     name: "GlobalBride",
@@ -17,6 +18,7 @@ const projects = [
     desc: "An international trade and tourism ecosystem built for the Hult Prize competition. Connects African manufacturers with global markets, streamlining import/export documentation, logistics, and cultural exchange.",
     tech: ["Python", "Django", "React", "AWS"],
     color: "accent",
+    url: "https://cunning-global-trade-link.base44.app/",
   },
 ];
 
@@ -32,15 +34,28 @@ const ProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {projects.map((p) => (
-            <div key={p.name} className="glass rounded-xl p-6 group hover:neon-border transition-all duration-500">
+            <div key={p.name} className="glass rounded-xl p-6 group hover:neon-border transition-all duration-500 relative">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${p.color === "primary" ? "bg-primary/10 text-primary" : "bg-accent/10 text-accent"}`}>
                   {p.icon}
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-heading text-lg neon-text tracking-wider">{p.name}</h3>
                   <span className="font-mono text-[10px] text-muted-foreground uppercase">{p.category}</span>
                 </div>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg glass hover:bg-primary/20 transition-all group/link"
+                  title="Live System Preview"
+                >
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
+                  </span>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover/link:text-primary transition-colors" />
+                </a>
               </div>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4">{p.desc}</p>
               <div className="flex flex-wrap gap-2">
