@@ -3,9 +3,12 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import SplashScreen from "@/components/SplashScreen";
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/HeroSection";
-import CredentialsSection from "@/components/CredentialsSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
+import CredentialsSection from "@/components/CredentialsSection";
+import ContactSection from "@/components/ContactSection";
+import AboutModal from "@/components/AboutModal";
+import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
 import Footer from "@/components/Footer";
 
@@ -13,6 +16,7 @@ const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [theme, setTheme] = useState<"cyber" | "shinkai">("cyber");
   const [entered, setEntered] = useState(false);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     setShowSplash(false);
@@ -41,14 +45,18 @@ const Index = () => {
         }`}
         style={{ filter: entered ? "blur(0)" : "blur(10px)" }}
       >
-        <NavBar theme={theme} onToggleTheme={toggleTheme} />
+        <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} />
         <HeroSection />
-        <CredentialsSection />
         <ProjectsSection />
         <SkillsSection />
+        <CredentialsSection />
+        <ContactSection />
         <Footer />
         <SystemLog />
+        <BenAI />
       </div>
+
+      <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
   );
 };
