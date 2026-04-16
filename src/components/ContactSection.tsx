@@ -1,20 +1,34 @@
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const ContactSection = () => {
   const { t } = useLanguage();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.open(`mailto:benjaminnshimiye633@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    setSending(true);
+
+    const { error } = await supabase
+      .from("contacts")
+      .insert({ name, email, message });
+
+    setSending(false);
+
+    if (error) {
+      toast.error("Failed to send message. Please try again.");
+      return;
+    }
+
     setSent(true);
+    toast.success(t("contact_sent"));
     setTimeout(() => {
       setSent(false);
       setName("");
@@ -66,9 +80,14 @@ const ContactSection = () => {
               />
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary/20 text-primary font-heading text-sm uppercase tracking-widest hover:bg-primary/30 hover:neon-border transition-all duration-300"
+                disabled={sending}
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary/20 text-primary font-heading text-sm uppercase tracking-widest hover:bg-primary/30 hover:neon-border transition-all duration-300 disabled:opacity-50"
               >
-                <Send className="w-4 h-4" />
+                {sending ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Send className="w-4 h-4" />
+                )}
                 {t("contact_send")}
               </button>
             </form>
