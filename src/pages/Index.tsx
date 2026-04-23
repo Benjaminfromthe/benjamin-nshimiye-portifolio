@@ -21,7 +21,10 @@ const Index = () => {
     return sessionStorage.getItem("welcome-screen-seen") !== "true";
   });
   const [theme, setTheme] = useState<"cyber" | "shinkai">("cyber");
-  const [entered, setEntered] = useState(false);
+  const [entered, setEntered] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return sessionStorage.getItem("welcome-screen-seen") === "true";
+  });
   const [aboutOpen, setAboutOpen] = useState(false);
   const [showTour, setShowTour] = useState(false);
 
