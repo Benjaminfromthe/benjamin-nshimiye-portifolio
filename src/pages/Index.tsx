@@ -16,13 +16,17 @@ import SystemTour from "@/components/SystemTour";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return sessionStorage.getItem("welcome-screen-seen") !== "true";
+  });
   const [theme, setTheme] = useState<"cyber" | "shinkai">("cyber");
   const [entered, setEntered] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [showTour, setShowTour] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
+    sessionStorage.setItem("welcome-screen-seen", "true");
     setShowSplash(false);
     setTimeout(() => {
       setEntered(true);
