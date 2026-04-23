@@ -1,5 +1,7 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Cpu, Globe, ExternalLink } from "lucide-react";
+import vuuMotoKigali from "@/assets/vuu-moto-kigali.jpg";
+import globalBridgeImage from "@/assets/globalbridge-bridge.jpg";
 
 const projects = [
   {
@@ -10,6 +12,8 @@ const projects = [
     tech: ["React", "Node.js", "PostgreSQL", "Socket.IO"],
     color: "primary",
     url: "https://vuu-transport-8d7a3630.base44.app/",
+    image: vuuMotoKigali,
+    alt: "Motorcycle taxi rider in Kigali, Rwanda",
   },
   {
     name: "GlobalBride",
@@ -19,6 +23,8 @@ const projects = [
     tech: ["Python", "Django", "React", "AWS"],
     color: "accent",
     url: "https://cunning-global-trade-link.base44.app/",
+    image: globalBridgeImage,
+    alt: "Bridge representing global connection and trade",
   },
 ];
 
@@ -34,7 +40,16 @@ const ProjectsSection = () => {
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {projects.map((p) => (
-            <div key={p.name} className="glass rounded-xl p-6 group hover:neon-border transition-all duration-500 relative">
+            <div key={p.name} className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative">
+              <div className="aspect-[16/9] overflow-hidden border-b border-border/50">
+                <img
+                  src={p.image}
+                  alt={p.alt}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${p.color === "primary" ? "bg-primary/10 text-primary" : "bg-accent/10 text-accent"}`}>
                   {p.icon}
@@ -64,6 +79,7 @@ const ProjectsSection = () => {
                     {t}
                   </span>
                 ))}
+              </div>
               </div>
             </div>
           ))}

@@ -5,7 +5,7 @@ const skills = [
   { name: "Python", level: 90, color: "primary" },
   { name: "SQL", level: 85, color: "primary" },
   { name: "React", level: 80, color: "accent" },
-  { name: "Cisco Networking", level: 75, color: "secondary" },
+  { name: "JavaScript", level: 75, color: "secondary" },
   { name: "TypeScript", level: 78, color: "primary" },
   { name: "Node.js", level: 82, color: "accent" },
 ];
@@ -36,7 +36,6 @@ const SkillsSection = () => {
             <div key={s.name} className="glass rounded-lg p-4">
               <div className="flex justify-between mb-2">
                 <span className="font-heading text-xs tracking-wider text-foreground">{s.name}</span>
-                <span className="font-mono text-xs text-primary">{s.level}%</span>
               </div>
               <div className="h-2 rounded-full bg-muted overflow-hidden">
                 <div
