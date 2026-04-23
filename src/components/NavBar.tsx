@@ -32,12 +32,14 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
     <nav className="fixed top-0 left-0 right-0 z-40 glass-strong">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 gap-4">
         <div className="flex items-center gap-4 shrink-0">
-          <div className="w-[45px] h-[45px] min-w-[45px] rounded-full overflow-hidden border-2 border-primary/50 animate-neon-pulse">
+          <button
+            type="button"
+            onClick={() => scrollTo("hero")}
+            className="w-[52px] h-[52px] min-w-[52px] rounded-full overflow-hidden border-2 border-primary/50 animate-neon-pulse"
+            aria-label="Go to hero section"
+          >
             <img src={profileImg} alt="Benjamin Nshimiye" className="w-full h-full object-cover" />
-          </div>
-          <span className="font-heading text-sm neon-text tracking-widest hidden sm:inline cursor-pointer whitespace-nowrap" onClick={() => scrollTo("hero")}>
-            BEN.SYS
-          </span>
+          </button>
         </div>
 
         <div className="hidden md:flex items-center gap-1">

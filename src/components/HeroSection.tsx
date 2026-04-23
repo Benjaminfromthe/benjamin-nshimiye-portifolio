@@ -14,16 +14,16 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-4 flex flex-col items-center text-center relative z-10">
         <div className="relative mb-8">
-          <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden relative animate-neon-pulse border-2 border-primary">
-            <div className="absolute inset-0 z-10 overflow-hidden rounded-full pointer-events-none">
+          <div className="w-52 h-72 md:w-64 md:h-80 rounded-[1.5rem] overflow-hidden relative animate-neon-pulse border-2 border-primary bg-card shadow-[0_0_30px_hsl(var(--primary)/0.18)]">
+            <div className="absolute inset-0 z-10 overflow-hidden rounded-[1.5rem] pointer-events-none">
               <div className="absolute inset-0 w-full h-8 bg-gradient-to-b from-primary/20 to-transparent" style={{ animation: "scan 2s linear infinite" }} />
             </div>
             <img src={profileImg} alt="Benjamin Nshimiye" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-primary" />
-          <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-primary" />
-          <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-primary" />
-          <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-primary" />
+          <div className="absolute -top-3 -left-3 w-8 h-8 border-t-2 border-l-2 border-primary" />
+          <div className="absolute -top-3 -right-3 w-8 h-8 border-t-2 border-r-2 border-primary" />
+          <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-2 border-l-2 border-primary" />
+          <div className="absolute -bottom-3 -right-3 w-8 h-8 border-b-2 border-r-2 border-primary" />
         </div>
 
         <h1 className="font-heading text-3xl md:text-5xl lg:text-6xl neon-text tracking-widest mb-3">
