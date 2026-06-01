@@ -5,9 +5,9 @@ const skills = [
   { name: "Python", level: 90, color: "primary" },
   { name: "SQL", level: 85, color: "primary" },
   { name: "React", level: 80, color: "accent" },
-  { name: "JavaScript", level: 75, color: "secondary" },
+  { name: "JavaScript", level: 75, color: "accent" },
   { name: "TypeScript", level: 78, color: "primary" },
-  { name: "Node.js", level: 82, color: "accent" },
+  { name: "Node.js", level: 82, color: "primary" },
 ];
 
 const SkillsSection = () => {
