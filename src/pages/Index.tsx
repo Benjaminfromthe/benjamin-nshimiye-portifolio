@@ -71,7 +71,6 @@ const Index = () => {
       </div>
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
-      {showTour && <SystemTour onClose={() => setShowTour(false)} />}
     </LanguageProvider>
   );
 };
