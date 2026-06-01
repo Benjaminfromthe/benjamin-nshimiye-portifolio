@@ -101,7 +101,7 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden glass-strong border-t border-border animate-fade-in">
+        <div className="lg:hidden glass-strong border-t border-border animate-fade-in">
           <div className="container mx-auto px-4 py-3 flex flex-col gap-2">
             {navItems.map((item) => (
               <button
