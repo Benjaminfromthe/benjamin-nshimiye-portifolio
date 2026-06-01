@@ -43,13 +43,11 @@ const SkillsSection = () => {
                   style={{
                     width: visible ? `${s.level}%` : "0%",
                     transitionDelay: `${i * 150}ms`,
-                    background: s.color === "primary"
-                      ? "hsl(var(--primary))"
-                      : s.color === "accent"
-                      ? "hsl(var(--accent))"
-                      : "hsl(var(--secondary))",
+                    background: s.color === "accent"
+                      ? "linear-gradient(90deg, hsl(var(--accent)), hsl(var(--secondary)))"
+                      : "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.6))",
                     boxShadow: visible
-                      ? `0 0 10px hsl(var(--${s.color}) / 0.5), 0 0 20px hsl(var(--${s.color}) / 0.2)`
+                      ? `0 0 10px hsl(var(--${s.color}) / 0.6), 0 0 20px hsl(var(--${s.color}) / 0.25)`
                       : "none",
                   }}
                 />
