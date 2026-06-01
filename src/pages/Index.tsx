@@ -26,7 +26,6 @@ const Index = () => {
     return sessionStorage.getItem("welcome-screen-seen") === "true";
   });
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [showTour, setShowTour] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     sessionStorage.setItem("welcome-screen-seen", "true");
