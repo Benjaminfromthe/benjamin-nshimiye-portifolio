@@ -1,19 +1,29 @@
+import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Image } from "lucide-react";
+import { Image, ChevronLeft, ChevronRight } from "lucide-react";
 import memory1 from "@/assets/memory-1.jpg";
 import memory2 from "@/assets/memory-2.jpg";
 import memory3 from "@/assets/memory-3.jpg";
 import memory4 from "@/assets/memory-4.jpg";
 
 const photos = [
-  { id: 1, src: memory1, aspect: "aspect-[3/4]", alt: "Benjamin at the football field" },
-  { id: 2, src: memory2, aspect: "aspect-[3/4]", alt: "Benjamin with a friend" },
-  { id: 3, src: memory3, aspect: "aspect-square", alt: "Benjamin photo collage" },
-  { id: 4, src: memory4, aspect: "aspect-[3/4]", alt: "Benjamin in denim jacket" },
+  { id: 1, src: memory1, alt: "Benjamin at the football field" },
+  { id: 2, src: memory2, alt: "Benjamin with a friend" },
+  { id: 3, src: memory3, alt: "Benjamin photo collage" },
+  { id: 4, src: memory4, alt: "Benjamin in denim jacket" },
 ];
 
 const MemoryGallery = () => {
   const { t } = useLanguage();
+  const [index, setIndex] = useState(0);
+
+  const prev = () => setIndex((i) => (i - 1 + photos.length) % photos.length);
+  const next = () => setIndex((i) => (i + 1) % photos.length);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (e.deltaY > 0 || e.deltaX > 0) next();
+    else prev();
+  };
 
   return (
     <section id="memories" className="py-20">
@@ -23,23 +33,52 @@ const MemoryGallery = () => {
           {t("memories_title")}
         </h2>
 
-        <div className="columns-2 md:columns-3 gap-4 max-w-4xl mx-auto">
-          {photos.map((p) => (
-            <div
-              key={p.id}
-              className={`mb-4 break-inside-avoid rounded-xl overflow-hidden glass group hover:neon-border transition-all duration-500`}
-            >
-              <div className="relative overflow-hidden">
-                <div className="absolute inset-0 animate-neon-pulse opacity-20 rounded-xl z-10 pointer-events-none" />
-                <img
-                  src={p.src}
-                  alt={p.alt}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
+        <div className="relative max-w-md mx-auto flex items-center justify-center gap-3">
+          <button
+            onClick={prev}
+            aria-label="Previous photo"
+            className="shrink-0 p-2 rounded-full glass hover:neon-border transition-all text-primary"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          <div
+            onWheel={handleWheel}
+            className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden glass neon-border group"
+          >
+            {photos.map((p, i) => (
+              <img
+                key={p.id}
+                src={p.src}
+                alt={p.alt}
+                loading="lazy"
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  i === index ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            ))}
+            <div className="absolute inset-0 animate-neon-pulse opacity-10 pointer-events-none" />
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Go to photo ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === index ? "w-6 bg-primary" : "w-1.5 bg-muted-foreground/50 hover:bg-primary/60"
+                  }`}
                 />
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <button
+            onClick={next}
+            aria-label="Next photo"
+            className="shrink-0 p-2 rounded-full glass hover:neon-border transition-all text-primary"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </section>
