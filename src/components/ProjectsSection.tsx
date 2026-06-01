@@ -38,9 +38,9 @@ const ProjectsSection = () => {
           {t("projects")}
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto auto-rows-fr">
           {projects.map((p) => (
-            <div key={p.name} className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative">
+            <div key={p.name} className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative flex flex-col h-full">
               <div className="aspect-[16/9] overflow-hidden border-b border-border/50">
                 <img
                   src={p.image}
