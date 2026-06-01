@@ -93,7 +93,7 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg glass hover:neon-border transition-all"
+            className="lg:hidden p-2 rounded-lg glass hover:neon-border transition-all"
           >
             {mobileOpen ? <X className="w-4 h-4 text-foreground" /> : <Menu className="w-4 h-4 text-foreground" />}
           </button>
