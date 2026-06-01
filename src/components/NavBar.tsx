@@ -48,7 +48,7 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
               <button
                 key={item.key}
                 onClick={item.action}
-                className="font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all px-3 py-1.5 rounded-full"
+                className="nav-link-glow font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all px-3 py-1.5 rounded-full"
               >
                 {t(`nav_${item.key}`)}
               </button>
