@@ -32,7 +32,6 @@ const Index = () => {
     setShowSplash(false);
     setTimeout(() => {
       setEntered(true);
-      setTimeout(() => setShowTour(true), 800);
     }, 50);
   }, []);
 
