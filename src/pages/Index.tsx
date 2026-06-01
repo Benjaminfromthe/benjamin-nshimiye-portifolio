@@ -12,7 +12,7 @@ import MemoryGallery from "@/components/MemoryGallery";
 import AboutModal from "@/components/AboutModal";
 import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
-import SystemTour from "@/components/SystemTour";
+
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -26,14 +26,12 @@ const Index = () => {
     return sessionStorage.getItem("welcome-screen-seen") === "true";
   });
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [showTour, setShowTour] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     sessionStorage.setItem("welcome-screen-seen", "true");
     setShowSplash(false);
     setTimeout(() => {
       setEntered(true);
-      setTimeout(() => setShowTour(true), 800);
     }, 50);
   }, []);
 
@@ -73,7 +71,6 @@ const Index = () => {
       </div>
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
-      {showTour && <SystemTour onClose={() => setShowTour(false)} />}
     </LanguageProvider>
   );
 };

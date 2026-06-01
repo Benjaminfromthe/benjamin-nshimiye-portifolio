@@ -30,25 +30,25 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-40 glass-strong">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 gap-4">
-        <div className="flex items-center gap-4 shrink-0">
+      <div className="container mx-auto flex items-center justify-between h-14 px-3 gap-2">
+        <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={() => scrollTo("hero")}
-            className="w-[52px] h-[52px] min-w-[52px] rounded-full overflow-hidden border-2 border-primary/50 animate-neon-pulse"
+            className="w-10 h-10 min-w-10 rounded-full overflow-hidden border-2 border-primary/50 animate-neon-pulse"
             aria-label="Go to hero section"
           >
             <img src={profileImg} alt="Benjamin Nshimiye" className="w-full h-full object-cover" />
           </button>
         </div>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
             {navItems.map((item) => (
               <button
                 key={item.key}
                 onClick={item.action}
-                className="nav-link-glow font-mono text-xs uppercase tracking-wider text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all px-3 py-1.5 rounded-full"
+                className="nav-link-glow font-mono text-[11px] uppercase tracking-wider text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all px-3 py-1.5 rounded-full whitespace-nowrap"
               >
                 {t(`nav_${item.key}`)}
               </button>
@@ -93,7 +93,7 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg glass hover:neon-border transition-all"
+            className="lg:hidden p-2 rounded-lg glass hover:neon-border transition-all"
           >
             {mobileOpen ? <X className="w-4 h-4 text-foreground" /> : <Menu className="w-4 h-4 text-foreground" />}
           </button>
@@ -101,7 +101,7 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden glass-strong border-t border-border animate-fade-in">
+        <div className="lg:hidden glass-strong border-t border-border animate-fade-in">
           <div className="container mx-auto px-4 py-3 flex flex-col gap-2">
             {navItems.map((item) => (
               <button
