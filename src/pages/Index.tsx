@@ -12,7 +12,7 @@ import MemoryGallery from "@/components/MemoryGallery";
 import AboutModal from "@/components/AboutModal";
 import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
-import SystemTour from "@/components/SystemTour";
+
 import Footer from "@/components/Footer";
 
 const Index = () => {
