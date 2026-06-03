@@ -51,13 +51,14 @@ const Index = () => {
     <LanguageProvider>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
+      <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} />
+
       <div
         className={`transition-all duration-700 ${
           entered ? "opacity-100 scale-100" : "opacity-0 scale-105"
         }`}
-        style={{ filter: entered ? "blur(0)" : "blur(10px)" }}
+        style={entered ? undefined : { filter: "blur(10px)" }}
       >
-        <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} />
         <HeroSection />
         <ProjectsSection />
         <SkillsSection />
@@ -67,8 +68,9 @@ const Index = () => {
         <ContactSection />
         <Footer />
         <SystemLog />
-        <BenAI />
       </div>
+
+      <BenAI />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
