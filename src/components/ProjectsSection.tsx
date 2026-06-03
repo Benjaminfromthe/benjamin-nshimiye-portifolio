@@ -1,30 +1,18 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Cpu, Globe, ExternalLink } from "lucide-react";
-import vuuMotoKigali from "@/assets/vuu-moto-kigali.jpg";
-import globalBridgeImage from "@/assets/globalbridge-bridge.jpg";
+import { ShoppingCart, ExternalLink } from "lucide-react";
+import simbaLogo from "@/assets/simba.jpeg.asset.json";
 
 const projects = [
   {
-    name: "Vuu",
-    icon: <Cpu className="w-6 h-6" />,
-    category: "Transport",
-    desc: "A smart transport management platform connecting Rwandan motorcyclists with passengers. Features real-time vehicle tracking, route optimization, digital ticketing, and seamless ride-hailing for urban mobility.",
-    tech: ["React", "Node.js", "PostgreSQL", "Socket.IO"],
+    name: "Simba Supermarket",
+    icon: <ShoppingCart className="w-6 h-6" />,
+    category: "E-Commerce",
+    desc: "A modern online supermarket platform delivering a seamless shopping experience. Customers can browse products, manage carts, and place orders with fast, intuitive navigation and a clean, mobile-first interface.",
+    tech: ["React", "TypeScript", "Tailwind", "Vercel"],
     color: "primary",
-    url: "https://vuu-transport-8d7a3630.base44.app/",
-    image: vuuMotoKigali,
-    alt: "Motorcycle taxi rider in Kigali, Rwanda",
-  },
-  {
-    name: "GlobalBride",
-    icon: <Globe className="w-6 h-6" />,
-    category: "Trade & Tourism",
-    desc: "An international trade and tourism ecosystem built for the Hult Prize competition. Connects African manufacturers with global markets, streamlining import/export documentation, logistics, and cultural exchange.",
-    tech: ["Python", "Django", "React", "AWS"],
-    color: "accent",
-    url: "https://cunning-global-trade-link.base44.app/",
-    image: globalBridgeImage,
-    alt: "Bridge representing global connection and trade",
+    url: "https://simba-supermarket-nine.vercel.app/",
+    image: simbaLogo.url,
+    alt: "Simba Supermarket logo",
   },
 ];
 
