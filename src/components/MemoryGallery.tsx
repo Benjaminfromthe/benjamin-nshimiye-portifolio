@@ -6,9 +6,9 @@ import memory2 from "@/assets/memory-2.jpg";
 import memory4 from "@/assets/memory-4.jpg";
 
 const photos = [
-  { id: 1, src: memory1, alt: "Benjamin at the football field", desc: "Scoring goals and building teamwork on the field." },
-  { id: 2, src: memory2, alt: "Benjamin with a friend", desc: "Great moments shared with close friends." },
-  { id: 4, src: memory4, alt: "Benjamin in denim jacket", desc: "Casual style, confident mindset." },
+  { id: 1, src: memory1, alt: "Benjamin at the football field", title: "Football Passion", desc: "Scoring goals and building teamwork on the field." },
+  { id: 2, src: memory2, alt: "Benjamin with a friend", title: "Friendship Moments", desc: "Great moments shared with close friends." },
+  { id: 4, src: memory4, alt: "Benjamin in denim jacket", title: "Denim Style", desc: "Casual style, confident mindset." },
 ];
 
 const MemoryGallery = () => {
