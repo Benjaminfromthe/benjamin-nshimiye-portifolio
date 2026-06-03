@@ -3,14 +3,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { Image, ChevronLeft, ChevronRight } from "lucide-react";
 import memory1 from "@/assets/memory-1.jpg";
 import memory2 from "@/assets/memory-2.jpg";
-import memory3 from "@/assets/memory-3.jpg";
 import memory4 from "@/assets/memory-4.jpg";
 
 const photos = [
-  { id: 1, src: memory1, alt: "Benjamin at the football field" },
-  { id: 2, src: memory2, alt: "Benjamin with a friend" },
-  { id: 3, src: memory3, alt: "Benjamin photo collage" },
-  { id: 4, src: memory4, alt: "Benjamin in denim jacket" },
+  { id: 1, src: memory1, alt: "Benjamin at the football field", title: "Football Passion", desc: "Scoring goals and building teamwork on the field." },
+  { id: 2, src: memory2, alt: "Benjamin with a friend", title: "Friendship Moments", desc: "Great moments shared with close friends." },
+  { id: 4, src: memory4, alt: "Benjamin in denim jacket", title: "Denim Style", desc: "Casual style, confident mindset." },
 ];
 
 const MemoryGallery = () => {
@@ -58,6 +56,14 @@ const MemoryGallery = () => {
               />
             ))}
             <div className="absolute inset-0 animate-neon-pulse opacity-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 pb-14">
+              <h3 className="text-white text-base font-bold text-center drop-shadow-md mb-1">
+                {photos[index].title}
+              </h3>
+              <p className="text-white/90 text-sm font-medium text-center drop-shadow-md">
+                {photos[index].desc}
+              </p>
+            </div>
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {photos.map((_, i) => (
                 <button
