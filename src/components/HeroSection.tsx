@@ -5,7 +5,7 @@ const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="hero" className="min-h-[70vh] flex items-center justify-center pt-14 relative overflow-hidden">
+    <section id="hero" className="min-h-[70vh] flex items-center justify-center pt-28 md:pt-32 pb-12 relative overflow-hidden">
       <div className="absolute inset-0 opacity-5" style={{
         backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
           linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
