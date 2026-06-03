@@ -56,8 +56,11 @@ const MemoryGallery = () => {
               />
             ))}
             <div className="absolute inset-0 animate-neon-pulse opacity-10 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 pb-8">
-              <p className="text-white text-sm font-medium text-center drop-shadow-md">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 pb-14">
+              <h3 className="text-white text-base font-bold text-center drop-shadow-md mb-1">
+                {photos[index].title}
+              </h3>
+              <p className="text-white/90 text-sm font-medium text-center drop-shadow-md">
                 {photos[index].desc}
               </p>
             </div>
