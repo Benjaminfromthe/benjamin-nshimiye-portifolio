@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 const skills = [
   { name: "Python", level: 90, color: "primary" },
   { name: "SQL", level: 85, color: "primary" },
+  { name: "C", level: 75, color: "accent" },
   { name: "React", level: 80, color: "accent" },
   { name: "JavaScript", level: 75, color: "accent" },
   { name: "TypeScript", level: 78, color: "primary" },
