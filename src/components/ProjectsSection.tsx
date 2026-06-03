@@ -26,15 +26,15 @@ const ProjectsSection = () => {
           {t("projects")}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto auto-rows-fr">
+        <div className="grid grid-cols-1 gap-8 max-w-xl mx-auto auto-rows-fr">
           {projects.map((p) => (
             <div key={p.name} className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative flex flex-col h-full">
-              <div className="aspect-[16/9] overflow-hidden border-b border-border/50">
+              <div className="aspect-[16/9] overflow-hidden border-b border-border/50 bg-background flex items-center justify-center p-6">
                 <img
                   src={p.image}
                   alt={p.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6 flex flex-col flex-1">
