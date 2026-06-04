@@ -1,5 +1,5 @@
 import { useLanguage, LANGUAGES, Lang } from "@/contexts/LanguageContext";
-import { Sun, Moon, Menu, X, Globe } from "lucide-react";
+import { Sun, Moon, Menu, X, Globe, Terminal } from "lucide-react";
 import { useState } from "react";
 import profileImg from "@/assets/benjamin-profile.png";
 import SocialLinks from "@/components/SocialLinks";
@@ -8,9 +8,10 @@ interface NavBarProps {
   theme: "cyber" | "shinkai";
   onToggleTheme: () => void;
   onAboutClick: () => void;
+  onTerminalClick: () => void;
 }
 
-const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
+const NavBar = ({ theme, onToggleTheme, onAboutClick, onTerminalClick }: NavBarProps) => {
   const { t, lang, setLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -84,6 +85,14 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick }: NavBarProps) => {
               </div>
             )}
           </div>
+          <button
+            onClick={onTerminalClick}
+            className="p-2 rounded-lg glass hover:neon-border transition-all"
+            aria-label="Open terminal"
+            title="Terminal mode"
+          >
+            <Terminal className="w-4 h-4 text-foreground" />
+          </button>
           <button
             onClick={onToggleTheme}
             className="p-2 rounded-lg glass hover:neon-border transition-all"

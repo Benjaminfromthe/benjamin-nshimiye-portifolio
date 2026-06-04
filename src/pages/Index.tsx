@@ -12,6 +12,8 @@ import MemoryGallery from "@/components/MemoryGallery";
 import AboutModal from "@/components/AboutModal";
 import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
+import GitHubStats from "@/components/GitHubStats";
+import TerminalMode from "@/components/TerminalMode";
 
 import Footer from "@/components/Footer";
 
@@ -26,6 +28,7 @@ const Index = () => {
     return sessionStorage.getItem("welcome-screen-seen") === "true";
   });
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [terminalOpen, setTerminalOpen] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     sessionStorage.setItem("welcome-screen-seen", "true");
@@ -51,7 +54,7 @@ const Index = () => {
     <LanguageProvider>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} />
+      <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} onTerminalClick={() => setTerminalOpen(true)} />
 
       <div
         className={`transition-all duration-700 ${
@@ -62,6 +65,7 @@ const Index = () => {
         <HeroSection />
         <ProjectsSection />
         <SkillsSection />
+        <GitHubStats />
         <MemoryGallery />
         <CredentialsSection />
         <AchievementVault />
@@ -71,6 +75,7 @@ const Index = () => {
       </div>
 
       <BenAI />
+      <TerminalMode open={terminalOpen} onClose={() => setTerminalOpen(false)} />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
