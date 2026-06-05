@@ -69,6 +69,7 @@ const Index = () => {
         <SkillsSection />
         <GitHubStats />
         <MemoryGallery />
+        <BlogSection />
         <CredentialsSection />
         <AchievementVault />
         <ContactSection />
@@ -78,6 +79,7 @@ const Index = () => {
 
       <BenAI />
       <TerminalMode open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      <CustomCursor />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
