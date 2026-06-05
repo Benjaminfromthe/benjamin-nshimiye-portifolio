@@ -16,6 +16,7 @@ import GitHubStats from "@/components/GitHubStats";
 import TerminalMode from "@/components/TerminalMode";
 import BlogSection from "@/components/BlogSection";
 import CustomCursor from "@/components/CustomCursor";
+import TestimonialsWall from "@/components/TestimonialsWall";
 
 import Footer from "@/components/Footer";
 
@@ -68,6 +69,7 @@ const Index = () => {
         <ProjectsSection />
         <SkillsSection />
         <GitHubStats />
+        <TestimonialsWall />
         <MemoryGallery />
         <BlogSection />
         <CredentialsSection />

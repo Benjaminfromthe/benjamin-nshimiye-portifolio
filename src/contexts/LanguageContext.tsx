@@ -49,6 +49,7 @@ const translations: Record<string, Record<string, string>> = {
   achievement_vault: { en: "Achievement Vault", rw: "Ububiko bw'Ibigezweho", fr: "Coffre des Réalisations", sw: "Hazina ya Mafanikio", zh: "成就宝库", es: "Bóveda de Logros", pt: "Cofre de Conquistas", de: "Errungenschaften-Tresor", ar: "خزينة الإنجازات", hi: "उपलब्धि तिजोरी", ja: "アチーブメント保管庫", ko: "업적 보관소" },
   achievement_cisco: { en: "Cisco Networking Basics", rw: "Ibanze bya Cisco", fr: "Bases du Réseau Cisco", sw: "Misingi ya Mtandao wa Cisco", zh: "Cisco网络基础", es: "Fundamentos de Redes Cisco", pt: "Fundamentos de Rede Cisco", de: "Cisco Netzwerk-Grundlagen", ar: "أساسيات شبكات سيسكو", hi: "Cisco नेटवर्किंग बेसिक्स", ja: "Ciscoネットワーキング基礎", ko: "Cisco 네트워킹 기초" },
   achievement_a2sv: { en: "A2SV Program Selection", rw: "Ihitamo rya A2SV", fr: "Sélection Programme A2SV", sw: "Uteuzi wa Programu A2SV", zh: "A2SV项目入选", es: "Selección Programa A2SV", pt: "Seleção Programa A2SV", de: "A2SV Programm-Auswahl", ar: "اختيار برنامج A2SV", hi: "A2SV प्रोग्राम चयन", ja: "A2SVプログラム選出", ko: "A2SV 프로그램 선발" },
+  testimonials: { en: "Endorsements", rw: "Ibyemejwe", fr: "Recommandations", sw: "Uthibitisho", zh: "推荐语", es: "Recomendaciones", pt: "Recomendações", de: "Empfehlungen", ar: "توصيات", hi: "प्रशंसापत्र", ja: "推薦", ko: "추천사" },
 };
 
 const LanguageContext = createContext<{
