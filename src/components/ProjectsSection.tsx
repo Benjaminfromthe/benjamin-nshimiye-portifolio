@@ -1,10 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ShoppingCart, ExternalLink } from "lucide-react";
+import { ShoppingCart, ExternalLink, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import simbaLogo from "@/assets/simba.jpeg.asset.json";
 
 const projects = [
   {
     name: "Simba Supermarket",
+    slug: "simba-supermarket",
     icon: <ShoppingCart className="w-6 h-6" />,
     category: "E-Commerce",
     desc: "A modern online supermarket platform delivering a seamless shopping experience. Customers can browse products, manage carts, and place orders with fast, intuitive navigation and a clean, mobile-first interface.",
@@ -61,13 +63,20 @@ const ProjectsSection = () => {
                 </a>
               </div>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{p.desc}</p>
-              <div className="flex flex-wrap gap-2 mt-auto">
+              <div className="flex flex-wrap gap-2 mt-auto mb-4">
                 {p.tech.map((t) => (
                   <span key={t} className="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-wider border border-primary/30 bg-primary/5 text-primary/90 hover:bg-primary/10 transition-colors">
                     {t}
                   </span>
                 ))}
               </div>
+              <Link
+                to={`/projects/${p.slug}`}
+                data-cursor="hover"
+                className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-wider text-primary hover:gap-3 transition-all"
+              >
+                Deep dive <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
               </div>
             </div>
           ))}

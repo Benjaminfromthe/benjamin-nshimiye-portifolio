@@ -14,6 +14,8 @@ import BenAI from "@/components/BenAI";
 import SystemLog from "@/components/SystemLog";
 import GitHubStats from "@/components/GitHubStats";
 import TerminalMode from "@/components/TerminalMode";
+import BlogSection from "@/components/BlogSection";
+import CustomCursor from "@/components/CustomCursor";
 
 import Footer from "@/components/Footer";
 
@@ -67,6 +69,7 @@ const Index = () => {
         <SkillsSection />
         <GitHubStats />
         <MemoryGallery />
+        <BlogSection />
         <CredentialsSection />
         <AchievementVault />
         <ContactSection />
@@ -76,6 +79,7 @@ const Index = () => {
 
       <BenAI />
       <TerminalMode open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      <CustomCursor />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
