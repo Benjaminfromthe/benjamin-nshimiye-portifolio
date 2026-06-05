@@ -1,10 +1,12 @@
 import { useLanguage } from "@/contexts/LanguageContext";
-import { ShoppingCart, ExternalLink } from "lucide-react";
+import { ShoppingCart, ExternalLink, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import simbaLogo from "@/assets/simba.jpeg.asset.json";
 
 const projects = [
   {
     name: "Simba Supermarket",
+    slug: "simba-supermarket",
     icon: <ShoppingCart className="w-6 h-6" />,
     category: "E-Commerce",
     desc: "A modern online supermarket platform delivering a seamless shopping experience. Customers can browse products, manage carts, and place orders with fast, intuitive navigation and a clean, mobile-first interface.",
