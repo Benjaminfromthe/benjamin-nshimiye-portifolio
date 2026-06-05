@@ -69,6 +69,7 @@ const Index = () => {
         <ProjectsSection />
         <SkillsSection />
         <GitHubStats />
+        <TestimonialsWall />
         <MemoryGallery />
         <BlogSection />
         <CredentialsSection />
