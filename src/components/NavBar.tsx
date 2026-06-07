@@ -1,17 +1,19 @@
 import { useLanguage, LANGUAGES, Lang } from "@/contexts/LanguageContext";
-import { Sun, Moon, Menu, X, Globe, Terminal } from "lucide-react";
+import { Sun, Moon, Menu, X, Globe, Terminal, FileText } from "lucide-react";
 import { useState } from "react";
 import profileImg from "@/assets/benjamin-profile.png";
 import SocialLinks from "@/components/SocialLinks";
+import AccentColorPicker from "@/components/AccentColorPicker";
 
 interface NavBarProps {
   theme: "cyber" | "shinkai";
   onToggleTheme: () => void;
   onAboutClick: () => void;
   onTerminalClick: () => void;
+  onCvClick: () => void;
 }
 
-const NavBar = ({ theme, onToggleTheme, onAboutClick, onTerminalClick }: NavBarProps) => {
+const NavBar = ({ theme, onToggleTheme, onAboutClick, onTerminalClick, onCvClick }: NavBarProps) => {
   const { t, lang, setLang } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
@@ -85,6 +87,15 @@ const NavBar = ({ theme, onToggleTheme, onAboutClick, onTerminalClick }: NavBarP
               </div>
             )}
           </div>
+          <AccentColorPicker />
+          <button
+            onClick={onCvClick}
+            className="p-2 rounded-lg glass hover:neon-border transition-all"
+            aria-label="Download CV"
+            title="CV Builder"
+          >
+            <FileText className="w-4 h-4 text-foreground" />
+          </button>
           <button
             onClick={onTerminalClick}
             className="p-2 rounded-lg glass hover:neon-border transition-all"

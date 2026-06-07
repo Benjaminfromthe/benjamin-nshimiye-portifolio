@@ -38,6 +38,27 @@ export type Database = {
         }
         Relationships: []
       }
+      guestbook_entries: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
       site_stats: {
         Row: {
           id: number
@@ -56,11 +77,30 @@ export type Database = {
         }
         Relationships: []
       }
+      visitor_stats: {
+        Row: {
+          count: number
+          id: number
+          updated_at: string
+        }
+        Insert: {
+          count?: number
+          id?: number
+          updated_at?: string
+        }
+        Update: {
+          count?: number
+          id?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      increment_visitor_count: { Args: never; Returns: number }
       increment_visits: { Args: never; Returns: number }
     }
     Enums: {

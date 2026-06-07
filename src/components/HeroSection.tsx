@@ -1,13 +1,11 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import profileImg from "@/assets/benjamin-profile.png";
-import ParticleField from "@/components/ParticleField";
 
 const HeroSection = () => {
   const { t } = useLanguage();
 
   return (
     <section id="hero" className="min-h-[70vh] flex items-center justify-center pt-28 md:pt-32 pb-12 relative overflow-hidden">
-      <ParticleField />
       <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
         backgroundImage: `linear-gradient(hsl(var(--primary) / 0.5) 1px, transparent 1px),
           linear-gradient(90deg, hsl(var(--primary) / 0.5) 1px, transparent 1px)`,
