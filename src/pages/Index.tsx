@@ -16,7 +16,8 @@ import GitHubStats from "@/components/GitHubStats";
 import TerminalMode from "@/components/TerminalMode";
 import BlogSection from "@/components/BlogSection";
 import CustomCursor from "@/components/CustomCursor";
-import TestimonialsWall from "@/components/TestimonialsWall";
+import CVBuilder from "@/components/CVBuilder";
+import Guestbook from "@/components/Guestbook";
 
 import Footer from "@/components/Footer";
 
@@ -32,6 +33,7 @@ const Index = () => {
   });
   const [aboutOpen, setAboutOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const [cvOpen, setCvOpen] = useState(false);
 
   const handleSplashComplete = useCallback(() => {
     sessionStorage.setItem("welcome-screen-seen", "true");
@@ -57,7 +59,13 @@ const Index = () => {
     <LanguageProvider>
       {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
 
-      <NavBar theme={theme} onToggleTheme={toggleTheme} onAboutClick={() => setAboutOpen(true)} onTerminalClick={() => setTerminalOpen(true)} />
+      <NavBar
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        onAboutClick={() => setAboutOpen(true)}
+        onTerminalClick={() => setTerminalOpen(true)}
+        onCvClick={() => setCvOpen(true)}
+      />
 
       <div
         className={`transition-all duration-700 ${
@@ -69,11 +77,11 @@ const Index = () => {
         <ProjectsSection />
         <SkillsSection />
         <GitHubStats />
-        <TestimonialsWall />
         <MemoryGallery />
         <BlogSection />
         <CredentialsSection />
         <AchievementVault />
+        <Guestbook />
         <ContactSection />
         <Footer />
         <SystemLog />
@@ -81,6 +89,7 @@ const Index = () => {
 
       <BenAI />
       <TerminalMode open={terminalOpen} onClose={() => setTerminalOpen(false)} />
+      <CVBuilder open={cvOpen} onClose={() => setCvOpen(false)} />
       <CustomCursor />
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
