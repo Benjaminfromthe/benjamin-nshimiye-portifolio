@@ -15,7 +15,7 @@ import SystemLog from "@/components/SystemLog";
 import GitHubStats from "@/components/GitHubStats";
 import TerminalMode from "@/components/TerminalMode";
 import BlogSection from "@/components/BlogSection";
-import CustomCursor from "@/components/CustomCursor";
+
 import CVBuilder from "@/components/CVBuilder";
 import Guestbook from "@/components/Guestbook";
 
@@ -90,7 +90,7 @@ const Index = () => {
       <BenAI />
       <TerminalMode open={terminalOpen} onClose={() => setTerminalOpen(false)} />
       <CVBuilder open={cvOpen} onClose={() => setCvOpen(false)} />
-      <CustomCursor />
+      
 
       <AboutModal open={aboutOpen} onClose={() => setAboutOpen(false)} />
     </LanguageProvider>
