@@ -54,6 +54,9 @@ const Footer = () => {
   return (
     <footer className="py-12 border-t border-border">
       <div className="container mx-auto px-4 text-center">
+        <div className="flex justify-center mb-6">
+          <NowPlaying />
+        </div>
         <div className="glass rounded-xl inline-flex items-center gap-4 px-8 py-4 mb-6">
           <span className="font-mono text-xs text-muted-foreground uppercase">{t("totalSyncs")}</span>
           <span className="font-heading text-2xl neon-text">{count.toLocaleString()}</span>
