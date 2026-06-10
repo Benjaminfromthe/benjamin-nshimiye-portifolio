@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import SocialLinks from "@/components/SocialLinks";
 import { supabase } from "@/integrations/supabase/client";
+import NowPlaying from "@/components/NowPlaying";
 
 const Footer = () => {
   const { t } = useLanguage();
