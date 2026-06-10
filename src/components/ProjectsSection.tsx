@@ -1,6 +1,8 @@
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ShoppingCart, ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import VanillaTilt from "vanilla-tilt";
 import simbaLogo from "@/assets/simba.jpeg.asset.json";
 
 const projects = [
