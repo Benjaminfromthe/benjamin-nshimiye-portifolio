@@ -15,6 +15,7 @@ import SystemLog from "@/components/SystemLog";
 import GitHubStats from "@/components/GitHubStats";
 import TerminalMode from "@/components/TerminalMode";
 import BlogSection from "@/components/BlogSection";
+import CodePlayground from "@/components/CodePlayground";
 
 import CVBuilder from "@/components/CVBuilder";
 import Guestbook from "@/components/Guestbook";
