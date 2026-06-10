@@ -80,6 +80,7 @@ const Index = () => {
         <GitHubStats />
         <MemoryGallery />
         <BlogSection />
+        <CodePlayground />
         <CredentialsSection />
         <AchievementVault />
         <Guestbook />
