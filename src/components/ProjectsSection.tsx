@@ -1,6 +1,8 @@
+import { useEffect, useRef } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { ShoppingCart, ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import VanillaTilt from "vanilla-tilt";
 import simbaLogo from "@/assets/simba.jpeg.asset.json";
 
 const projects = [
@@ -20,6 +22,26 @@ const projects = [
 
 const ProjectsSection = () => {
   const { t } = useLanguage();
+  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const nodes = cardsRef.current.filter((n): n is HTMLDivElement => !!n);
+    nodes.forEach((n) =>
+      VanillaTilt.init(n, {
+        max: 8,
+        speed: 600,
+        glare: true,
+        "max-glare": 0.25,
+        scale: 1.02,
+      }),
+    );
+    return () => {
+      nodes.forEach((n) => {
+        const inst = (n as unknown as { vanillaTilt?: { destroy: () => void } }).vanillaTilt;
+        inst?.destroy();
+      });
+    };
+  }, []);
 
   return (
     <section id="projects" className="py-20">
@@ -29,8 +51,13 @@ const ProjectsSection = () => {
         </h2>
 
         <div className="grid grid-cols-1 gap-8 max-w-xl mx-auto auto-rows-fr">
-          {projects.map((p) => (
-            <div key={p.name} className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative flex flex-col h-full">
+          {projects.map((p, i) => (
+            <div
+              key={p.name}
+              ref={(el) => (cardsRef.current[i] = el)}
+              style={{ transformStyle: "preserve-3d" }}
+              className="glass rounded-xl overflow-hidden group hover:neon-border transition-all duration-500 relative flex flex-col h-full"
+            >
               <div className="aspect-[16/9] overflow-hidden border-b border-border/50 bg-background flex items-center justify-center p-6">
                 <img
                   src={p.image}
